@@ -131,6 +131,10 @@ git clone --recurse-submodules https://github.com/licyk/ComfyUI-HakuImg
 ```
 
 
+### 使用 ComfyUI Manager
+进入 ComfyUI 界面后，打开 ComfyUI Manager，进入**节点管理**，搜索`ComfyUI-HakuImg`并找到`ComfyUI-HakuImg`选项后，点击`Install`进行安装。
+
+
 ### 使用绘世启动器
 进入绘世启动器后，点击**版本管理 -> 安装新扩展**，在下方的**扩展 URL**输入框填入该节点的安装地址。
 

@@ -132,6 +132,10 @@ git clone --recurse-submodules https://github.com/licyk/ComfyUI-HakuImg
 ```
 
 
+### Using ComfyUI Manager
+In the ComfyUI interface, open the ComfyUI Manager. Go to **Custom Nodes Manager**, search for `ComfyUI-HakuImg`, and locate the `ComfyUI-HakuImg` option. Click `Install` to complete the installation.
+
+
 ### Using HuiShi Launcher
 Open the HuiShi Launcher and go to **Versions -> Install Extension**.  
 In the **Extension URL** input box, enter the installation URL for the node:
@@ -150,4 +154,4 @@ Example workflows can be found in the `examples` folder in the repository, which
 
 
 ## Acknowledgements
-- [@KohakuBlueleaf](https://github.com/KohakuBlueleaf) - Provide HakuImg。
+- [@KohakuBlueleaf](https://github.com/KohakuBlueleaf) - Provide HakuImg.
