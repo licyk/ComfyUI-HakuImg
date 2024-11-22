@@ -1,3 +1,8 @@
+from .utils.utils import setup_hakuimg, setup_pixeloe
+
+setup_hakuimg()
+setup_pixeloe()
+
 from .nodes.pixeloe import PIXELOE
 from .nodes.pixelize import PIXELIZE
 from .nodes.blur import BLUR
@@ -14,20 +19,20 @@ from .nodes.custom_exif import CUSTOMEXIF
 from .nodes.blend import BLENDIMAGE
 
 NODE_CLASS_MAPPINGS = {
-    "PixelOE" : PIXELOE,
-    "Pixelize": PIXELIZE,
-    "Blur" : BLUR,
-    "Glow" : NEON,
-    "Flip" : FLIP,
-    "Sketch" : SKETCH,
+    "BlendImage": BLENDIMAGE,
     "Color": COLOR,
     "Curve": CURVE,
+    "Blur" : BLUR,
+    "Sketch" : SKETCH,
+    "PixelOE" : PIXELOE,
+    "Pixelize": PIXELIZE,
+    "Glow" : NEON,
+    "Flip" : FLIP,
     "Chromatic": CHROMATIC,
     "LenDistortion": LENDISTORTION,
     "TiltShift": TILTSHIFT,
     "InOutPaint": INOUTPAINT,
     "CustomExif": CUSTOMEXIF,
-    "BlendImage": BLENDIMAGE,
 }
 
 __all__ = ['NODE_CLASS_MAPPINGS']

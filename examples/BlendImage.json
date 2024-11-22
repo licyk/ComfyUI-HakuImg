@@ -1,0 +1,294 @@
+{
+  "last_node_id": 4,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        509,
+        272
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1
+          ],
+          "label": "IMAGE"
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            2
+          ],
+          "label": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "00230-20240612_163458_starryXLV52_v52_Restart.png",
+        "image"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        516,
+        665
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "label": "IMAGE"
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            5
+          ],
+          "label": "MASK",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ComfyUI_00074_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "BlendImage",
+      "pos": [
+        854,
+        277
+      ],
+      "size": [
+        315,
+        694
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 1,
+          "shape": 7,
+          "label": "image_1"
+        },
+        {
+          "name": "mask_1",
+          "type": "MASK",
+          "link": 2,
+          "shape": 7,
+          "label": "mask_1"
+        },
+        {
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": 3,
+          "shape": 7,
+          "label": "image_2"
+        },
+        {
+          "name": "mask_2",
+          "type": "MASK",
+          "link": 5,
+          "shape": 7,
+          "label": "mask_2"
+        },
+        {
+          "name": "image_3",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_3"
+        },
+        {
+          "name": "mask_3",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "mask_3"
+        },
+        {
+          "name": "image_4",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_4"
+        },
+        {
+          "name": "mask_4",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "mask_4"
+        },
+        {
+          "name": "image_5",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_5"
+        },
+        {
+          "name": "mask_5",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "mask_5"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "label": "image",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BlendImage"
+      },
+      "widgets_values": [
+        0.72,
+        4,
+        1,
+        "normal",
+        0.9,
+        4,
+        0.81,
+        "color_burn",
+        1,
+        4,
+        1,
+        "normal",
+        1,
+        4,
+        1,
+        "normal",
+        1,
+        4,
+        1,
+        "normal"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "SaveImage",
+      "pos": [
+        1212,
+        272
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4,
+          "label": "images"
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      2,
+      1,
+      1,
+      1,
+      "MASK"
+    ],
+    [
+      3,
+      3,
+      0,
+      1,
+      2,
+      "IMAGE"
+    ],
+    [
+      4,
+      1,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      1,
+      1,
+      3,
+      "MASK"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8140274938684171,
+      "offset": [
+        -104.90347066324115,
+        -182.33357649062657
+      ]
+    }
+  },
+  "version": 0.4
+}
