@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-hakuimg"
+description = "Image processing tool for ComfyUI."
+version = "1.0.0"
+license = { text = "Apache-2.0 license " }
+
+[project.urls]
+Repository = "https://github.com/licyk/ComfyUI-HakuImg"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "licyk"
+DisplayName = "ComfyUI-HakuImg"
+Icon = ""
