@@ -4,57 +4,58 @@ from PIL import Image
 from ..hakuimg.sketch import run
 
 
+
 class SKETCH:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "kernel_size": (
                     "INT", {
                         "default": 0,
                         "min": 0,
-                        "max": 1024,
-                        "step": 0.05
+                        "max": 25,
+                        "step": 1
                     }
                 ),
                 "sigma": (
                     "FLOAT", {
                         "default": 1.4,
-                        "min": 0,
-                        "max": 1024,
+                        "min": 1,
+                        "max": 5,
                         "step": 0.05
                     }
                 ),
                 "k_sigma": (
                     "FLOAT", {
                         "default": 1.6,
-                        "min": 0,
-                        "max": 1024,
+                        "min": 1,
+                        "max": 5,
                         "step": 0.05
                     }
                 ),
                 "epsilon": (
                     "FLOAT", {
                         "default": -0.03,
-                        "min": -1,
-                        "max": 1,
+                        "min": -0.2,
+                        "max": 0.2,
                         "step": 0.005
                     }
                 ),
                 "phi": (
                     "FLOAT", {
                         "default": 10,
-                        "min": 0,
-                        "max": 1024,
+                        "min": 1,
+                        "max": 50,
                         "step": 1
                     }
                 ),
                 "gamma": (
                     "FLOAT", {
                         "default": 1.0,
-                        "min": 0,
-                        "max": 1024,
+                        "min": 0.75,
+                        "max": 1,
                         "step": 0.005
                     }
                 ),
@@ -63,6 +64,11 @@ class SKETCH:
                         "gray",
                         "rgb"
                     ],
+                ),
+                "scale": (
+                    "BOOLEAN", {
+                        "default": False
+                    }
                 ),
             },
         }
@@ -74,31 +80,33 @@ class SKETCH:
 
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             kernel_size: float,
             sigma: float,
             k_sigma: float,
             epsilon: float,
             phi: float,
             gamma: float,
-            color_mode: str
+            color_mode: str,
+            scale: bool,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images = run(
-            images,
+        image = run(
+            image,
             kernel_size,
             sigma,
             k_sigma,
             epsilon,
             phi,
             gamma,
-            color_mode
+            color_mode,
+            scale,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

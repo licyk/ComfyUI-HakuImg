@@ -4,12 +4,13 @@ from PIL import Image
 from ..hakuimg.curve import run
 
 
+
 class CURVE:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "all_x_point_1": (
                     "INT", {
                         "default":63,
@@ -210,9 +211,10 @@ class CURVE:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             all_x_point_1: int,
             all_y_point_1: int,
             all_x_point_2: int,
@@ -238,13 +240,13 @@ class CURVE:
             b_x_point_3: int,
             b_y_point_3: int,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
         curve_func = run(3)
-        images = curve_func(
-            images,
+        image = curve_func(
+            image,
             all_x_point_1,
             all_y_point_1,
             all_x_point_2,
@@ -271,7 +273,7 @@ class CURVE:
             b_y_point_3,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

@@ -5,42 +5,41 @@ from ..hakuimg.pixel import run
 
 
 
-
 class PIXELIZE:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "colors": (
                     "INT", {
-                        "default": 16,
-                        "min": 0,
-                        "max": 1024,
+                        "default": 128,
+                        "min": 2,
+                        "max": 256,
                         "step": 1
                     }
                 ),
                 "dot_size": (
                     "INT", {
-                        "default": 8,
-                        "min": 0,
-                        "max": 1024,
+                        "default": 6,
+                        "min": 1,
+                        "max": 32,
                         "step": 1
                     }
                 ),
                 "outline": (
                     "INT", {
-                        "default": 0,
+                        "default": 1,
                         "min": 0,
-                        "max": 1024,
+                        "max": 10,
                         "step": 1
                     }
                 ),
                 "smooth": (
                     "INT", {
-                        "default": 5,
+                        "default": 4,
                         "min": 0,
-                        "max": 1024,
+                        "max": 10,
                         "step": 1
                     }
                 ),
@@ -75,7 +74,7 @@ class PIXELIZE:
 
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             colors: int,
             dot_size: int,
             outline: int,
@@ -84,22 +83,22 @@ class PIXELIZE:
             precise: int,
             resize: bool,
         ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images = run(
-            images,
+        image = run(
+            image,
             colors,
             dot_size,
             outline,
             smooth,
             mode,
             precise,
-            resize
+            resize,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

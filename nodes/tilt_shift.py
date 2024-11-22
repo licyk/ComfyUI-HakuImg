@@ -9,7 +9,7 @@ class TILTSHIFT:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "tilt_shift_focus_ratio": (
                     "FLOAT", {
                         "default": 0,
@@ -34,23 +34,24 @@ class TILTSHIFT:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             tilt_shift_focus_ratio: float,
             tilt_shift_dof: int,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images = run(
-            images,
+        image = run(
+            image,
             tilt_shift_focus_ratio,
-            tilt_shift_dof
+            tilt_shift_dof,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

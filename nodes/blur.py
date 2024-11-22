@@ -4,17 +4,18 @@ from PIL import Image
 from ..hakuimg.blur import run
 
 
+
 class BLUR:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "blur": (
                     "INT", {
-                        "default": 16,
+                        "default": 8,
                         "min": 0,
-                        "max": 1024,
+                        "max": 128,
                         "step": 1
                     }
                 ),
@@ -26,21 +27,22 @@ class BLUR:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             blur: int,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images = run(
-            images,
-            blur
+        image = run(
+            image,
+            blur,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

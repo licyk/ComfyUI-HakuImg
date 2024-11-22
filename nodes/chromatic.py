@@ -4,18 +4,19 @@ from PIL import Image
 from ..hakuimg.chromatic import run
 
 
+
 class CHROMATIC:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "strength": (
                     "FLOAT", {
                         "default": 1,
                         "min": 0,
                         "max": 3,
-                        "step": 0.05
+                        "step": 0.01
                     }
                 ),
                 "blur": (
@@ -31,23 +32,24 @@ class CHROMATIC:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             strength: float,
             blur: bool,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB')
 
-        images = run(
-            images,
+        image = run(
+            image,
             strength,
             blur,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

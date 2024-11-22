@@ -1,0 +1,7 @@
+torch
+pillow
+numpy
+opencv-python
+scipy
+matplotlib
+blendmodes

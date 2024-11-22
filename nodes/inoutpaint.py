@@ -4,12 +4,13 @@ from PIL import Image
 from ..inoutpaint.main import run
 
 
+
 class INOUTPAINT:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "width": (
                     "INT", {
                         "default": 512,
@@ -54,9 +55,10 @@ class INOUTPAINT:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             width: int,
             height: int,
             align_top: int,
@@ -64,12 +66,12 @@ class INOUTPAINT:
             align_bottom: int,
             align_right: int,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images, _, _ = run(
-            images,
+        image, _, _ = run(
+            image,
             width,
             height,
             align_top,
@@ -78,7 +80,7 @@ class INOUTPAINT:
             align_right,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

@@ -294,7 +294,7 @@ class BLENDIMAGE:
         blend_func = run(5)
         bg = "#FFFFFF"
 
-        images = blend_func(
+        image = blend_func(
             bg,
             alpha_1,
             alpha_2,
@@ -320,10 +320,10 @@ class BLENDIMAGE:
             image_2,
             image_3,
             image_4,
-            image_5
+            image_5,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

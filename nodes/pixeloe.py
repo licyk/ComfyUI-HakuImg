@@ -11,7 +11,7 @@ class PIXELOE:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "target_size": (
                     "INT", {
                         "default": 256,
@@ -114,7 +114,7 @@ class PIXELOE:
 
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             target_size: int,
             patch_size: int,
             pixel_size: int,
@@ -129,12 +129,12 @@ class PIXELOE:
             no_upscale: bool,
             no_downscale: bool,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = cv2.cvtColor(images, cv2.COLOR_RGB2BGR)
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-        images = pixelize(
-            images,
+        image = pixelize(
+            image,
             mode,
             target_size,
             patch_size,
@@ -150,8 +150,8 @@ class PIXELOE:
             no_downscale,
         )
 
-        images = cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

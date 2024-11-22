@@ -4,12 +4,13 @@ from PIL import Image
 from ..hakuimg.neon import run
 
 
+
 class NEON:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "glow_mode": (
                     [
                         "BS",
@@ -29,7 +30,7 @@ class NEON:
                         "default": 1,
                         "min": 0,
                         "max": 1,
-                        "step": 0.05
+                        "step": 0.01
                     }
                 ),
             },
@@ -40,25 +41,26 @@ class NEON:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             blur: int,
             strength: int,
             glow_mode: str,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images = run(
-            images,
+        image = run(
+            image,
             blur,
             strength,
-            glow_mode
+            glow_mode,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)

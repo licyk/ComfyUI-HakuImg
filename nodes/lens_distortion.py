@@ -4,12 +4,13 @@ from PIL import Image
 from ..hakuimg.lens_distortion import run
 
 
+
 class LENDISTORTION:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "images": ("IMAGE",),
+                "image": ("IMAGE",),
                 "lens_distortion_k1": (
                     "FLOAT", {
                         "default": 0,
@@ -34,23 +35,24 @@ class LENDISTORTION:
     FUNCTION = "process_image"
     CATEGORY = "image/HakuImg"
 
+
     def process_image(
             self,
-            images: Image.Image,
+            image: Image.Image,
             lens_distortion_k1: float,
             lens_distortion_k2: float,
     ):
-        images = images.squeeze().numpy()
-        images = (images * 255).astype(np.uint8)
-        images = Image.fromarray(images, 'RGB').convert('RGBA')
+        image = image.squeeze().numpy()
+        image = (image * 255).astype(np.uint8)
+        image = Image.fromarray(image, 'RGB').convert('RGBA')
 
-        images = run(
-            images,
+        image = run(
+            image,
             lens_distortion_k1,
-            lens_distortion_k2
+            lens_distortion_k2,
         )
 
-        images = np.array(images).astype(np.float32) / 255.0
-        images = torch.from_numpy(images)[None,]
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
 
-        return (images,)
+        return (image,)
