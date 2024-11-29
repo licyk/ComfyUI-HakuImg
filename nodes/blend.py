@@ -25,6 +25,10 @@ class BLENDIMAGE:
                     "INT",
                     {"default": 2, "min": 1, "max": 5, "step": 1},
                 ),
+                "bg_color": (
+                    "COLOR",
+                    {"default": "#FFFFFF"},
+                ),
             },
         }
         for i in range(1, 6):
@@ -67,6 +71,7 @@ class BLENDIMAGE:
     def process_image(
         self,
         images_count: int,
+        bg_color: str,
         image_1: Image.Image = None,
         image_2: Image.Image = None,
         image_3: Image.Image = None,
@@ -186,7 +191,7 @@ class BLENDIMAGE:
             image_5 = {"image": image_5, "mask": mask_5}
 
         blend_func = run(5)
-        bg = "#FFFFFF"
+        bg = bg_color
 
         image = blend_func(
             bg,
