@@ -22,12 +22,12 @@ NODE_CLASS_MAPPINGS = {
     "BlendImage": BLENDIMAGE,
     "Color": COLOR,
     "Curve": CURVE,
-    "Blur" : BLUR,
-    "Sketch" : SKETCH,
-    "PixelOE" : PIXELOE,
+    "Blur": BLUR,
+    "Sketch": SKETCH,
+    "PixelOE": PIXELOE,
     "Pixelize": PIXELIZE,
-    "Glow" : NEON,
-    "Flip" : FLIP,
+    "Glow": NEON,
+    "Flip": FLIP,
     "Chromatic": CHROMATIC,
     "LenDistortion": LENDISTORTION,
     "TiltShift": TILTSHIFT,
@@ -35,4 +35,6 @@ NODE_CLASS_MAPPINGS = {
     "CustomExif": CUSTOMEXIF,
 }
 
-__all__ = ['NODE_CLASS_MAPPINGS']
+__all__ = ["NODE_CLASS_MAPPINGS", "WEB_DIRECTORY"]
+
+WEB_DIRECTORY = "./js"
