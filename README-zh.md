@@ -111,6 +111,9 @@ _✨图片处理工具_
 
 ![CustomExif](./assets/CustomExif.jpg)
 
+>[!NOTE]  
+>建议使用`SaveImageWithCustomExif`节点保存图片。
+
 </details>
 
 

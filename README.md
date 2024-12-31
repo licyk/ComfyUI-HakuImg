@@ -111,6 +111,9 @@ This node is ported from [KohakuBlueleaf/a1111-sd-webui-haku-img](https://github
 
 ![CustomExif](./assets/CustomExif.jpg)
 
+>[!NOTE]  
+>It is recommended to use the `SaveImageWithCustomExif` node to save images.
+
 </details>
 
 
