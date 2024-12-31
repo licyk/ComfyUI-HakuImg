@@ -27,6 +27,7 @@ from .nodes.tilt_shift import TILTSHIFT
 from .nodes.inoutpaint import INOUTPAINT
 from .nodes.custom_exif import CUSTOMEXIF
 from .nodes.blend import BLENDIMAGE
+from .nodes.save_image import SaveImageWithCustomExif
 
 NODE_CLASS_MAPPINGS = {
     "BlendImage": BLENDIMAGE,
@@ -42,6 +43,7 @@ NODE_CLASS_MAPPINGS = {
     "InOutPaint": INOUTPAINT,
     "CustomExif": CUSTOMEXIF,
     "Pixelize": PIXELIZE,
+    "SaveImageWithCustomExif": SaveImageWithCustomExif,
 }
 
 if status:
