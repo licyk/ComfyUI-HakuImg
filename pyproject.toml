@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-hakuimg"
 description = "Image processing tool for ComfyUI."
-version = "1.0.2"
+version = "1.0.3"
 license = { text = "Apache-2.0 license " }
 
 [project.urls]
