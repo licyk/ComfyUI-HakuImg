@@ -16,4 +16,4 @@ def run(
     img = img.to(org_device)
     if use_channel_last:
         img = img.permute(0, 2, 3, 1)
-    return img
+    return (img,)
