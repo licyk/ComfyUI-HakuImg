@@ -1,18 +1,6 @@
-from .utils.utils import setup_hakuimg, setup_pixeloe
-from .utils.logging import get_logger
-
-
-
-logger = get_logger()
+from .utils.utils import setup_hakuimg
 setup_hakuimg()
-setup_pixeloe()
 
-try:
-    from .nodes.pixeloe import PIXELOE
-    status = True
-except:
-    logger.warning("Cannot import PiexlOE, PixelOE node will not init")
-    status = False
 
 from .nodes.pixelize import PIXELIZE
 from .nodes.blur import BLUR
@@ -28,6 +16,9 @@ from .nodes.inoutpaint import INOUTPAINT
 from .nodes.custom_exif import CUSTOMEXIF
 from .nodes.blend import BLENDIMAGE
 from .nodes.save_image import SaveImageWithCustomExif
+from .nodes.pixeloe_ import PixelOE
+from .nodes.outline_expansion import OutlineExpansion
+from .nodes.pre_resize import PreResize
 
 NODE_CLASS_MAPPINGS = {
     "BlendImage": BLENDIMAGE,
@@ -44,10 +35,11 @@ NODE_CLASS_MAPPINGS = {
     "CustomExif": CUSTOMEXIF,
     "Pixelize": PIXELIZE,
     "SaveImageWithCustomExif": SaveImageWithCustomExif,
+    "PixelOE": PixelOE,
+    "OutlineExpansion": OutlineExpansion,
+    "PreResize": PreResize,
 }
 
-if status:
-    NODE_CLASS_MAPPINGS.update({"PixelOE" : PIXELOE})
 
 WEB_DIRECTORY = "./js"
 

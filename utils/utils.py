@@ -126,10 +126,12 @@ def is_installed(package, friendly: str = None):
                 pkg_name, pkg_version = [x.strip() for x in pkg.split('==')]
             elif '<=' in pkg:
                 pkg_name, pkg_version = [x.strip() for x in pkg.split('<=')]
-            elif '>' in pkg:
-                pkg_name, pkg_version = [x.strip() for x in pkg.split('>')]
+            elif '!=' in pkg:
+                pkg_name, pkg_version = [x.strip() for x in pkg.split('!=')]
             elif '<' in pkg:
                 pkg_name, pkg_version = [x.strip() for x in pkg.split('<')]
+            elif '>' in pkg:
+                pkg_name, pkg_version = [x.strip() for x in pkg.split('>')]
             else:
                 pkg_name, pkg_version = pkg.strip(), None
 
@@ -144,6 +146,11 @@ def is_installed(package, friendly: str = None):
                             ok = False
                     elif '<=' in pkg:
                         if compare_versions(version, pkg_version) == -1 or compare_versions(version, pkg_version) == 0:
+                            ok = True
+                        else:
+                            ok = False
+                    elif '!=' in pkg:
+                        if compare_versions(version, pkg_version) != 0:
                             ok = True
                         else:
                             ok = False
@@ -200,7 +207,6 @@ def setup_hakuimg():
     logger.info("Check HakuImg requirements")
     requirements_file = os.path.join(Path(__file__).resolve().parent.parent.as_posix(), "requirements.txt")
     if not validate_requirements(requirements_file):
-        print(f":: {validate_requirements(requirements_file)}")
         try:
             run_pip(f"install -r \"{requirements_file}\"", "Installing HakuImg requirements", live=True)
         except:
@@ -208,35 +214,3 @@ def setup_hakuimg():
             return
 
     logger.info("Check HakuImg requirements done")
-
-
-def setup_pixeloe():
-    logger.info("Check HakuImg submodule module: PixelOE")
-    try:
-        from ..hakuimg.PixelOE.pixeloe.pixelize import pixelize
-    except:
-        if not shutil.which("git"):
-            logger.error("Git not found in, cannot init HakuImg submodule module and may cause HakuImg not to work")
-            return
-
-        logger.info("Initializing HakuImg submodule module: PixelOE")
-        hakuimg_path = Path(__file__).resolve().parent.parent.as_posix()
-        try:
-            if os.path.exists(os.path.join(hakuimg_path, ".git")):
-                run(f"git -C \"{hakuimg_path}\" submodule update --init --recursive")
-                status = True
-            else:
-                status = False
-        except:
-            status = False
-
-        if not status:
-            try:
-                logger.warning("Init HakuImg submodule module failed. Retry to fix")
-                pixeloe_path = os.path.join(hakuimg_path, "hakuimg", "PixelOE")
-                run(f"git clone https://github.com/KohakuBlueleaf/PixelOE \"{pixeloe_path}\"")
-            except:
-                logger.error("Init HakuImg submodule module failed, may cause HakuImg not to work")
-                return
-
-    logger.info("Check HakuImg submodule module done")
