@@ -1,5 +1,4 @@
 import os
-import json
 import numpy as np
 import folder_paths
 from PIL import Image
@@ -45,7 +44,7 @@ class SaveImageWithCustomExif:
             if extra_pnginfo is not None:
                 for nodes in extra_pnginfo.get("workflow").get("nodes"):
                     if nodes.get("type") == "CustomExif":
-                        metadata.add_text("ImageInfo", json.dumps(nodes.get("widgets_values")[0]))
+                        metadata.add_text("parameters", nodes.get("widgets_values")[0])
 
             filename_with_batch_num = filename.replace("%batch_num%", str(batch_number))
             file = f"{filename_with_batch_num}_{counter:05}_.png"
