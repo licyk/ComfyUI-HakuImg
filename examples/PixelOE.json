@@ -1,7 +1,38 @@
 {
-  "last_node_id": 3,
-  "last_link_id": 2,
+  "last_node_id": 4,
+  "last_link_id": 5,
   "nodes": [
+    {
+      "id": 3,
+      "type": "SaveImage",
+      "pos": [
+        1142,
+        464
+      ],
+      "size": [
+        315,
+        270
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "label": "images",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.18"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
     {
       "id": 2,
       "type": "LoadImage",
@@ -20,20 +51,23 @@
       "outputs": [
         {
           "name": "IMAGE",
+          "label": "IMAGE",
           "type": "IMAGE",
           "links": [
-            1
+            4
           ],
-          "label": "IMAGE"
+          "slot_index": 0
         },
         {
           "name": "MASK",
+          "label": "MASK",
           "type": "MASK",
-          "links": null,
-          "label": "MASK"
+          "links": null
         }
       ],
       "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.18",
         "Node name for S&R": "LoadImage"
       },
       "widgets_values": [
@@ -42,98 +76,76 @@
       ]
     },
     {
-      "id": 3,
-      "type": "SaveImage",
-      "pos": [
-        1142,
-        464
-      ],
-      "size": [
-        315,
-        270
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 2,
-          "label": "images"
-        }
-      ],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "ComfyUI"
-      ]
-    },
-    {
-      "id": 1,
+      "id": 4,
       "type": "PixelOE",
       "pos": [
-        800.5413208007812,
-        458.1921691894531
+        785.5568237304688,
+        459.7207946777344
       ],
       "size": [
         315,
-        346
+        290
       ],
       "flags": {},
       "order": 1,
       "mode": 0,
       "inputs": [
         {
-          "name": "image",
+          "name": "img",
           "type": "IMAGE",
-          "link": 1,
-          "label": "image"
+          "link": 4
         }
       ],
       "outputs": [
         {
-          "name": "image",
+          "name": "pixel_image",
           "type": "IMAGE",
           "links": [
-            2
+            5
           ],
-          "label": "image",
           "slot_index": 0
+        },
+        {
+          "name": "oe_image",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "oe_weight",
+          "type": "IMAGE",
+          "links": null
         }
       ],
       "properties": {
+        "cnr_id": "comfyui-hakuimg",
+        "ver": "75261db89d691b7032af737db0b75fc18361d23d",
         "Node name for S&R": "PixelOE"
       },
       "widgets_values": [
-        256,
-        10,
-        16,
         4,
-        0,
-        1,
-        1,
+        2,
         "contrast",
+        false,
+        false,
+        256,
         "kmeans",
-        true,
-        false,
-        false,
-        false
+        "ordered",
+        "default"
       ]
     }
   ],
   "links": [
     [
-      1,
+      4,
       2,
       0,
-      1,
+      4,
       0,
       "IMAGE"
     ],
     [
-      2,
-      1,
+      5,
+      4,
       0,
       3,
       0,
@@ -144,10 +156,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.1918176537727516,
+      "scale": 1.1000000000000008,
       "offset": [
-        -286.3941198689791,
-        -316.59216320060597
+        -301.2810643467782,
+        -226.784928516047
       ]
     }
   },

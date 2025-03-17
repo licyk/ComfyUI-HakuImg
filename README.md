@@ -115,6 +115,20 @@ This node is ported from [KohakuBlueleaf/a1111-sd-webui-haku-img](https://github
 >It is recommended to use the `SaveImageWithCustomExif` node to save images.
 
 </details>
+<details>
+
+<summary>OutlineExpansion</summary>
+
+![OutlineExpansion](./assets/OutlineExpansion.jpg)
+
+</details>
+<details>
+
+<summary>PreResize</summary>
+
+![PreResize](./assets/PreResize.jpg)
+
+</details>
 
 
 ## Installation
@@ -153,7 +167,7 @@ Then, click **Install** on the right.
 ## Usage
 The node can be found in the **Image -> HakuImg** section of the ComfyUI node library.
 
-Example workflows can be found in the `examples` folder in the repository, which can be imported into ComfyUI for use.
+Example workflows can be found in the [`examples`](https://github.com/licyk/ComfyUI-HakuImg/tree/main/examples) folder in the repository, which can be imported into ComfyUI for use.
 
 
 ## Acknowledgements

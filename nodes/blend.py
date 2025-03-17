@@ -9,6 +9,10 @@ class BLENDIMAGE:
     def INPUT_TYPES(cls):
         inputs = {
             "optional": {
+                "bg_color": (
+                    "INT",
+                    {"default": 0xFFFFFF, "min": 0, "max": 0xFFFFFF, "step": 1},
+                ),
                 "image_1": ("IMAGE",),
                 "mask_1": ("MASK",),
                 "image_2": ("IMAGE",),
@@ -24,10 +28,6 @@ class BLENDIMAGE:
                 "images_count": (
                     "INT",
                     {"default": 2, "min": 1, "max": 5, "step": 1},
-                ),
-                "bg_color": (
-                    "COLOR",
-                    {"default": "#FFFFFF"},
                 ),
             },
         }
@@ -71,7 +71,7 @@ class BLENDIMAGE:
     def process_image(
         self,
         images_count: int,
-        bg_color: str,
+        bg_color: int = 0xFFFFFF,
         image_1: Image.Image = None,
         image_2: Image.Image = None,
         image_3: Image.Image = None,
@@ -191,7 +191,7 @@ class BLENDIMAGE:
             image_5 = {"image": image_5, "mask": mask_5}
 
         blend_func = run(5)
-        bg = bg_color
+        bg = f"#{hex(bg_color)[2:].upper()}"
 
         image = blend_func(
             bg,

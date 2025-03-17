@@ -115,6 +115,20 @@ _✨图片处理工具_
 >建议使用`SaveImageWithCustomExif`节点保存图片。
 
 </details>
+<details>
+
+<summary>OutlineExpansion</summary>
+
+![OutlineExpansion](./assets/OutlineExpansion.jpg)
+
+</details>
+<details>
+
+<summary>PreResize</summary>
+
+![PreResize](./assets/PreResize.jpg)
+
+</details>
 
 
 ## 安装
@@ -149,9 +163,9 @@ https://github.com/licyk/ComfyUI-HakuImg
 
 
 ## 使用
-节点可在 ComfyUI 节点库中的**图像 -> HakuImg**找到。
+节点可在 ComfyUI 节点库中的 **图像 -> HakuImg** 找到。
 
-仓库中的`examples`文件夹有示例工作流，可导入 ComfyUI 中进行使用。
+仓库中的[`examples`](https://github.com/licyk/ComfyUI-HakuImg/tree/main/examples)文件夹有示例工作流，可导入 ComfyUI 中进行使用。
 
 
 ## 鸣谢
