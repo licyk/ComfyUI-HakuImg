@@ -165,7 +165,7 @@ https://github.com/licyk/ComfyUI-HakuImg
 ## 使用
 节点可在 ComfyUI 节点库中的 **图像 -> HakuImg** 找到。
 
-仓库中的[`examples`](https://github.com/licyk/ComfyUI-HakuImg/tree/main/examples)文件夹有示例工作流，可导入 ComfyUI 中进行使用。
+仓库中的[`example_workflows`](https://github.com/licyk/ComfyUI-HakuImg/tree/main/example_workflows)文件夹有示例工作流，可导入 ComfyUI 中进行使用。
 
 
 ## 鸣谢

@@ -167,7 +167,7 @@ Then, click **Install** on the right.
 ## Usage
 The node can be found in the **Image -> HakuImg** section of the ComfyUI node library.
 
-Example workflows can be found in the [`examples`](https://github.com/licyk/ComfyUI-HakuImg/tree/main/examples) folder in the repository, which can be imported into ComfyUI for use.
+Example workflows can be found in the [`example_workflows`](https://github.com/licyk/ComfyUI-HakuImg/tree/main/example_workflows) folder in the repository, which can be imported into ComfyUI for use.
 
 
 ## Acknowledgements
