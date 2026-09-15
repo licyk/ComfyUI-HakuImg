@@ -103,5 +103,22 @@
     "display_name": "Pre Resize",
     "inputs": {"img": {"name": "Image"}, "target_pixels": {"name": "Target Pixels"}, "pixel_size": {"name": "Pixel Size"}, "device": {"name": "Device", "options": {"default": "Default", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
     "outputs": {"0": {"name": "Image"}}
+  },
+  "LicykStyle": {
+    "display_name": "Licyk Style",
+    "description": "Apply color-shifted noise and chromatic aberration to an image.",
+    "inputs": {
+      "image": {"name": "Image"},
+      "seed": {"name": "Seed"},
+      "noise_strength": {"name": "Noise Strength"},
+      "noise_r": {"name": "Noise Color (R)"},
+      "noise_g": {"name": "Noise Color (G)"},
+      "noise_b": {"name": "Noise Color (B)"},
+      "offset_percentage": {"name": "Noise Color Offset"},
+      "opacity": {"name": "Noise Opacity"},
+      "chromatic_strength": {"name": "Chromatic Strength"},
+      "chromatic_blur": {"name": "Chromatic Blur"}
+    },
+    "outputs": {"0": {"name": "Image"}}
   }
 }

@@ -9,6 +9,7 @@ from .hakuimg.nodes.custom_exif import CustomExif
 from .hakuimg.nodes.flip import Flip
 from .hakuimg.nodes.inoutpaint import InOutPaint
 from .hakuimg.nodes.lens_distortion import LenDistortion
+from .hakuimg.nodes.licyk_style import LicykStyle
 from .hakuimg.nodes.neon import Neon
 from .hakuimg.nodes.outline_expansion import OutlineExpansion
 from .hakuimg.nodes.pixelize import Pixelize
@@ -32,6 +33,7 @@ class HakuImgExtension(ComfyExtension):
             Neon,
             Flip,
             Chromatic,
+            LicykStyle,
             LenDistortion,
             TiltShift,
             InOutPaint,

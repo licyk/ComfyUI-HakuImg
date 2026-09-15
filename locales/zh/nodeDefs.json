@@ -103,5 +103,22 @@
     "display_name": "预调整大小",
     "inputs": {"img": {"name": "图像"}, "target_pixels": {"name": "目标像素数"}, "pixel_size": {"name": "像素大小"}, "device": {"name": "设备", "options": {"default": "默认", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
     "outputs": {"0": {"name": "图像"}}
+  },
+  "LicykStyle": {
+    "display_name": "Licyk 风格",
+    "description": "为图像添加带颜色偏移的噪声和色差效果。",
+    "inputs": {
+      "image": {"name": "图像"},
+      "seed": {"name": "种子"},
+      "noise_strength": {"name": "噪声强度"},
+      "noise_r": {"name": "噪声颜色（R）"},
+      "noise_g": {"name": "噪声颜色（G）"},
+      "noise_b": {"name": "噪声颜色（B）"},
+      "offset_percentage": {"name": "噪声颜色偏移"},
+      "opacity": {"name": "噪声不透明度"},
+      "chromatic_strength": {"name": "色差强度"},
+      "chromatic_blur": {"name": "色差模糊"}
+    },
+    "outputs": {"0": {"name": "图像"}}
   }
 }
