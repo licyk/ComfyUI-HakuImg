@@ -129,6 +129,13 @@ _✨图片处理工具_
 ![PreResize](./assets/PreResize.jpg)
 
 </details>
+<details>
+
+<summary>LicykStyle</summary>
+
+![LicykStyle](./assets/LicykStyle.jpg)
+
+</details>
 
 
 ## 安装

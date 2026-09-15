@@ -129,6 +129,13 @@ This node is ported from [KohakuBlueleaf/a1111-sd-webui-haku-img](https://github
 ![PreResize](./assets/PreResize.jpg)
 
 </details>
+<details>
+
+<summary>LicykStyle</summary>
+
+![LicykStyle](./assets/LicykStyle.jpg)
+
+</details>
 
 
 ## Installation
