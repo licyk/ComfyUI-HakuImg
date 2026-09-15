@@ -1,8 +1,6 @@
-from typing import Any
-
 import torch
+from comfy_api.latest import IO
 from ..effects.pixeloe import run
-
 
 
 def image_preprocess(img: torch.Tensor, device: str) -> tuple[torch.Tensor, bool, torch.device]:
@@ -19,32 +17,34 @@ def image_preprocess(img: torch.Tensor, device: str) -> tuple[torch.Tensor, bool
     return img, use_channel_last, org_device
 
 
-class PixelOE:
-    INPUT_TYPES = lambda: {
-        "required": {
-            "pixel_size": ("INT", {"default": 4, "min": 1, "max": 32}),
-            "thickness": ("INT", {"default": 2, "min": 0, "max": 6}),
-            "img": ("IMAGE",),
-            "mode": (["contrast", "k_centroid", "lanczos", "nearest", "bilinear"],),
-            "color_quant": ("BOOLEAN", {"default": False}),
-            "no_post_upscale": ("BOOLEAN", {"default": False}),
-            "num_colors": ("INT", {"default": 256, "min": 2, "max": 256}),
-            "quant_mode": (["kmeans", "weighted-kmeans", "repeat-kmeans"],),
-            "dither_mode": (["ordered", "error_diffusion", "none"],),
-            "device": (["default", "cpu", "cuda", "mps"],),
-        },
-    }
-    RETURN_TYPES = ("IMAGE", "IMAGE", "IMAGE")
-    RETURN_NAMES = (
-        "pixel_image",
-        "oe_image",
-        "oe_weight",
-    )
-    FUNCTION = "execute"
-    CATEGORY = "image/HakuImg"
+class PixelOE(IO.ComfyNode):
+    @classmethod
+    def define_schema(cls) -> IO.Schema:
+        return IO.Schema(
+            node_id="PixelOE",
+            category="image/HakuImg",
+            inputs=[
+                IO.Int.Input("pixel_size", default=4, min=1, max=32),
+                IO.Int.Input("thickness", default=2, min=0, max=6),
+                IO.Image.Input("img"),
+                IO.Combo.Input("mode", options=["contrast", "k_centroid", "lanczos", "nearest", "bilinear"]),
+                IO.Boolean.Input("color_quant", default=False),
+                IO.Boolean.Input("no_post_upscale", default=False),
+                IO.Int.Input("num_colors", default=256, min=2, max=256),
+                IO.Combo.Input("quant_mode", options=["kmeans", "weighted-kmeans", "repeat-kmeans"]),
+                IO.Combo.Input("dither_mode", options=["ordered", "error_diffusion", "none"]),
+                IO.Combo.Input("device", options=["default", "cpu", "cuda", "mps"]),
+            ],
+            outputs=[
+                IO.Image.Output(display_name="pixel_image"),
+                IO.Image.Output(display_name="oe_image"),
+                IO.Image.Output(display_name="oe_weight"),
+            ],
+        )
 
+    @classmethod
     def execute(
-        self,
+        cls,
         pixel_size: int,
         thickness: int,
         img: torch.Tensor,
@@ -55,7 +55,7 @@ class PixelOE:
         quant_mode: str,
         dither_mode: str,
         device: str,
-    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    ) -> IO.NodeOutput:
         result, oe_image, oe_weight = run(
             pixel_size=pixel_size,
             thickness=thickness,
@@ -69,4 +69,4 @@ class PixelOE:
             device=device,
         )
 
-        return result, oe_image, oe_weight
+        return IO.NodeOutput(result, oe_image, oe_weight)

@@ -1,73 +1,39 @@
-from typing import Any
-
 import torch
 import numpy as np
 from PIL import Image
+from comfy_api.latest import IO
 from ..effects.inoutpaint.main import run
 
 
-
-class INOUTPAINT:
+class InOutPaint(IO.ComfyNode):
     @classmethod
-    def INPUT_TYPES(cls) -> dict[str, Any]:
-        return {
-            "required": {
-                "image": ("IMAGE",),
-                "width": (
-                    "INT", {
-                        "default": 512,
-                        "step": 1
-                    }
-                ),
-                "height": (
-                    "INT", {
-                        "default": 512,
-                        "step": 1
-                    }
-                ),
-                "align_top": (
-                    "INT", {
-                        "default": 0,
-                        "step": 1
-                    }
-                ),
-                "align_left": (
-                    "INT", {
-                        "default": 0,
-                        "step": 1
-                    }
-                ),
-                "align_bottom": (
-                    "INT", {
-                        "default": 512,
-                        "step": 1
-                    }
-                ),
-                "align_right": (
-                    "INT", {
-                        "default": 512,
-                        "step": 1
-                    }
-                ),
-            },
-        }
+    def define_schema(cls) -> IO.Schema:
+        return IO.Schema(
+            node_id="InOutPaint",
+            category="image/HakuImg",
+            inputs=[
+                IO.Image.Input("image"),
+                IO.Int.Input("width", default=512, step=1),
+                IO.Int.Input("height", default=512, step=1),
+                IO.Int.Input("align_top", default=0, step=1),
+                IO.Int.Input("align_left", default=0, step=1),
+                IO.Int.Input("align_bottom", default=512, step=1),
+                IO.Int.Input("align_right", default=512, step=1),
+            ],
+            outputs=[IO.Image.Output(display_name="image")],
+        )
 
-    RETURN_TYPES = ("IMAGE",)
-    RETURN_NAMES = ("image",)
-    FUNCTION = "process_image"
-    CATEGORY = "image/HakuImg"
-
-
-    def process_image(
-            self,
-            image: torch.Tensor,
-            width: int,
-            height: int,
-            align_top: int,
-            align_left: int,
-            align_bottom: int,
-            align_right: int,
-    ) -> tuple[torch.Tensor]:
+    @classmethod
+    def execute(
+        cls,
+        image: torch.Tensor,
+        width: int,
+        height: int,
+        align_top: int,
+        align_left: int,
+        align_bottom: int,
+        align_right: int,
+    ) -> IO.NodeOutput:
         image_array = image.squeeze().numpy()
         image_array = (image_array * 255).astype(np.uint8)
 
@@ -89,4 +55,4 @@ class INOUTPAINT:
         output_array = np.array(pil_image).astype(np.float32) / 255.0
         output_image = torch.from_numpy(output_array)[None,]
 
-        return (output_image,)
+        return IO.NodeOutput(output_image)

@@ -1,33 +1,34 @@
-from typing import Any
-
 import torch
+from comfy_api.latest import IO
 from ..effects.outline_expansion import run
 
 
-class OutlineExpansion:
-    INPUT_TYPES = lambda: {
-        "required": {
-            "img": ("IMAGE",),
-            "pixel_size": ("INT", {"default": 4, "min": 1, "max": 32}),
-            "thickness": ("INT", {"default": 3, "min": 1, "max": 6}),
-            "device": (["default", "cpu", "cuda", "mps"],),
-        },
-    }
-    RETURN_TYPES = ("IMAGE", "IMAGE")
-    RETURN_NAMES = (
-        "oe_image",
-        "oe_weight",
-    )
-    FUNCTION = "execute"
-    CATEGORY = "image/HakuImg"
+class OutlineExpansion(IO.ComfyNode):
+    @classmethod
+    def define_schema(cls) -> IO.Schema:
+        return IO.Schema(
+            node_id="OutlineExpansion",
+            category="image/HakuImg",
+            inputs=[
+                IO.Image.Input("img"),
+                IO.Int.Input("pixel_size", default=4, min=1, max=32),
+                IO.Int.Input("thickness", default=3, min=1, max=6),
+                IO.Combo.Input("device", options=["default", "cpu", "cuda", "mps"]),
+            ],
+            outputs=[
+                IO.Image.Output(display_name="oe_image"),
+                IO.Image.Output(display_name="oe_weight"),
+            ],
+        )
 
+    @classmethod
     def execute(
-        self,
+        cls,
         img: torch.Tensor,
         pixel_size: int,
         thickness: int,
         device: str,
-    ) -> tuple[torch.Tensor, torch.Tensor]:
+    ) -> IO.NodeOutput:
         oe_image, oe_weight = run(
             img=img,
             pixel_size=pixel_size,
@@ -35,4 +36,4 @@ class OutlineExpansion:
             device=device,
         )
 
-        return oe_image, oe_weight
+        return IO.NodeOutput(oe_image, oe_weight)

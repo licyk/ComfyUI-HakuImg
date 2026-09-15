@@ -1,65 +1,39 @@
-from typing import Any
-
-import torch
 import numpy as np
+import torch
 from PIL import Image
-from ..effects.blend import run, blend_methods
+from comfy_api.latest import IO
+
+from ..effects.blend import blend_methods, run
 
 
-class BLENDIMAGE:
+class BlendImage(IO.ComfyNode):
     @classmethod
-    def INPUT_TYPES(cls) -> dict[str, Any]:
-        inputs: dict[str, dict[str, object]] = {
-            "optional": {
-                "bg_color": (
-                    "INT",
-                    {"default": 0xFFFFFF, "min": 0, "max": 0xFFFFFF, "step": 1},
-                ),
-                "image_1": ("IMAGE",),
-                "mask_1": ("MASK",),
-                "image_2": ("IMAGE",),
-                "mask_2": ("MASK",),
-                "image_3": ("IMAGE",),
-                "mask_3": ("MASK",),
-                "image_4": ("IMAGE",),
-                "mask_4": ("MASK",),
-                "image_5": ("IMAGE",),
-                "mask_5": ("MASK",),
-            },
-            "required": {
-                "images_count": (
-                    "INT",
-                    {"default": 2, "min": 1, "max": 5, "step": 1},
-                ),
-            },
-        }
-        for i in range(1, 6):
-            inputs["required"][f"alpha_{i}"] = (
-                "FLOAT",
-                {"default": 1, "min": 0, "max": 1, "step": 0.01},
+    def define_schema(cls) -> IO.Schema:
+        inputs = [
+            IO.Int.Input("images_count", default=2, min=1, max=5, step=1),
+            IO.Int.Input("bg_color", default=0xFFFFFF, min=0, max=0xFFFFFF, step=1, optional=True),
+        ]
+        for index in range(1, 6):
+            inputs.extend(
+                [
+                    IO.Image.Input(f"image_{index}", optional=True),
+                    IO.Mask.Input(f"mask_{index}", optional=True),
+                    IO.Float.Input(f"alpha_{index}", default=1, min=0, max=1, step=0.01),
+                    IO.Float.Input(f"mask_blur_{index}", default=4, min=0, max=32, step=0.05),
+                    IO.Float.Input(f"mask_strength_{index}", default=1, min=0, max=1, step=0.01),
+                    IO.Combo.Input(f"mode_{index}", options=blend_methods, default=blend_methods[0]),
+                ]
             )
-            inputs["required"][f"mask_blur_{i}"] = (
-                "FLOAT",
-                {"default": 4, "min": 0, "max": 32, "step": 0.05},
-            )
-            inputs["required"][f"mask_strength_{i}"] = (
-                "FLOAT",
-                {"default": 1, "min": 0, "max": 1, "step": 0.01},
-            )
-            inputs["required"][f"mode_{i}"] = (
-                blend_methods,
-                {"default": blend_methods[0]},
-            )
+        return IO.Schema(
+            node_id="BlendImage",
+            category="image/HakuImg",
+            inputs=inputs,
+            outputs=[IO.Image.Output(display_name="image")],
+        )
 
-        return inputs
-
-    RETURN_TYPES = ("IMAGE",)
-    RETURN_NAMES = ("image",)
-    FUNCTION = "process_image"
-    CATEGORY = "image/HakuImg"
-
-    def process_image(
-        self,
+    @classmethod
+    def execute(
+        cls,
         images_count: int,
         bg_color: int = 0xFFFFFF,
         image_1: torch.Tensor | None = None,
@@ -92,10 +66,8 @@ class BLENDIMAGE:
         mode_3: str | None = None,
         mode_4: str | None = None,
         mode_5: str | None = None,
-    ) -> tuple[torch.Tensor]:
-        def to_image_item(
-            image: torch.Tensor | None, mask: torch.Tensor | None, name: str
-        ) -> dict[str, Image.Image] | None:
+    ) -> IO.NodeOutput:
+        def to_image_item(image: torch.Tensor | None, mask: torch.Tensor | None, name: str) -> dict[str, Image.Image] | None:
             if image is None and mask is None:
                 return None
             if image is None or mask is None:
@@ -111,15 +83,16 @@ class BLENDIMAGE:
 
             return {"image": image_pil, "mask": mask_pil}
 
-        image_1_item = to_image_item(image_1, mask_1, "image_1")
-        image_2_item = to_image_item(image_2, mask_2, "image_2")
-        image_3_item = to_image_item(image_3, mask_3, "image_3")
-        image_4_item = to_image_item(image_4, mask_4, "image_4")
-        image_5_item = to_image_item(image_5, mask_5, "image_5")
+        image_items = [
+            to_image_item(image, mask, f"image_{index}")
+            for index, (image, mask) in enumerate(
+                ((image_1, mask_1), (image_2, mask_2), (image_3, mask_3), (image_4, mask_4), (image_5, mask_5)),
+                start=1,
+            )
+        ]
 
         blend_func = run(5)
         bg = f"#{hex(bg_color)[2:].upper()}"
-
         image = blend_func(
             bg,
             alpha_1,
@@ -142,14 +115,10 @@ class BLENDIMAGE:
             mode_3,
             mode_4,
             mode_5,
-            image_1_item,
-            image_2_item,
-            image_3_item,
-            image_4_item,
-            image_5_item,
+            *image_items,
         )
 
         image = np.array(image).astype(np.float32) / 255.0
         image = torch.from_numpy(image)[None,]
 
-        return (image,)
+        return IO.NodeOutput(image)

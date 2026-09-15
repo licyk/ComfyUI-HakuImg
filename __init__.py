@@ -1,42 +1,51 @@
-from .hakuimg.nodes.pixelize import PIXELIZE
-from .hakuimg.nodes.blur import BLUR
-from .hakuimg.nodes.neon import NEON
-from .hakuimg.nodes.flip import FLIP
-from .hakuimg.nodes.sketch import SKETCH
-from .hakuimg.nodes.color import COLOR
-from .hakuimg.nodes.curve import CURVE
-from .hakuimg.nodes.chromatic import CHROMATIC
-from .hakuimg.nodes.lens_distortion import LENDISTORTION
-from .hakuimg.nodes.tilt_shift import TILTSHIFT
-from .hakuimg.nodes.inoutpaint import INOUTPAINT
-from .hakuimg.nodes.custom_exif import CUSTOMEXIF
-from .hakuimg.nodes.blend import BLENDIMAGE
-from .hakuimg.nodes.save_image import SaveImageWithCustomExif
-from .hakuimg.nodes.pixeloe_ import PixelOE
-from .hakuimg.nodes.outline_expansion import OutlineExpansion
-from .hakuimg.nodes.pre_resize import PreResize
+from comfy_api.latest import ComfyExtension, IO
 
-NODE_CLASS_MAPPINGS = {
-    "BlendImage": BLENDIMAGE,
-    "Color": COLOR,
-    "Curve": CURVE,
-    "Blur" : BLUR,
-    "Sketch" : SKETCH,
-    "Glow" : NEON,
-    "Flip" : FLIP,
-    "Chromatic": CHROMATIC,
-    "LenDistortion": LENDISTORTION,
-    "TiltShift": TILTSHIFT,
-    "InOutPaint": INOUTPAINT,
-    "CustomExif": CUSTOMEXIF,
-    "SaveImageWithCustomExif": SaveImageWithCustomExif,
-    "Pixelize": PIXELIZE,
-    "PixelOE": PixelOE,
-    "OutlineExpansion": OutlineExpansion,
-    "PreResize": PreResize,
-}
+from .hakuimg.nodes.blend import BlendImage
+from .hakuimg.nodes.blur import Blur
+from .hakuimg.nodes.chromatic import Chromatic
+from .hakuimg.nodes.color import Color
+from .hakuimg.nodes.curve import Curve
+from .hakuimg.nodes.custom_exif import CustomExif
+from .hakuimg.nodes.flip import Flip
+from .hakuimg.nodes.inoutpaint import InOutPaint
+from .hakuimg.nodes.lens_distortion import LenDistortion
+from .hakuimg.nodes.neon import Neon
+from .hakuimg.nodes.outline_expansion import OutlineExpansion
+from .hakuimg.nodes.pixelize import Pixelize
+from .hakuimg.nodes.pixeloe_ import PixelOE
+from .hakuimg.nodes.pre_resize import PreResize
+from .hakuimg.nodes.save_image import SaveImageWithCustomExif
+from .hakuimg.nodes.sketch import Sketch
+from .hakuimg.nodes.tilt_shift import TiltShift
+
+
+class HakuImgExtension(ComfyExtension):
+    async def get_node_list(self) -> list[type[IO.ComfyNode]]:
+        return [
+            BlendImage,
+            Color,
+            Curve,
+            Blur,
+            Sketch,
+            PixelOE,
+            Pixelize,
+            Neon,
+            Flip,
+            Chromatic,
+            LenDistortion,
+            TiltShift,
+            InOutPaint,
+            CustomExif,
+            SaveImageWithCustomExif,
+            OutlineExpansion,
+            PreResize,
+        ]
+
+
+async def comfy_entrypoint() -> HakuImgExtension:
+    return HakuImgExtension()
 
 
 WEB_DIRECTORY = "./js"
 
-__all__ = ["NODE_CLASS_MAPPINGS", "WEB_DIRECTORY"]
+__all__ = ["WEB_DIRECTORY", "comfy_entrypoint"]
