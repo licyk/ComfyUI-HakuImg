@@ -20,14 +20,18 @@ const getNodeType = (node) =>
   node?.constructor?.comfyClass ?? node?.comfyClass ?? node?.type;
 
 /**
- * ComfyUI uses widget.hidden for LiteGraph layout and rendering visibility.
- * The same property is also consumed by the Node 2.0 renderer.
+ * Keep both visibility representations in sync.
+ *
+ * Older Node 2.0 frontends render from the widget value store's options,
+ * while LiteGraph reads widget.hidden directly.
  */
 function setWidgetHidden(widget, hidden) {
   if (!widget) return false;
 
-  const changed = widget.hidden !== hidden;
+  const changed =
+    widget.hidden !== hidden || widget.options?.hidden !== hidden;
   widget.hidden = hidden;
+  if (widget.options) widget.options.hidden = hidden;
   return changed;
 }
 
