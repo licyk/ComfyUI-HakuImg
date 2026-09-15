@@ -1,0 +1,107 @@
+{
+  "BlendImage": {
+    "display_name": "图像混合",
+    "description": "使用蒙版、不透明度、模糊、强度和混合模式混合最多五张图像。",
+    "inputs": {
+      "images_count": {"name": "图像数量"},
+      "bg_color": {"name": "背景颜色"},
+      "image_1": {"name": "图像 1"}, "mask_1": {"name": "蒙版 1"}, "alpha_1": {"name": "不透明度 1"}, "mask_blur_1": {"name": "蒙版模糊 1"}, "mask_strength_1": {"name": "蒙版强度 1"}, "mode_1": {"name": "混合模式 1", "options": {"normal": "正常", "darken": "变暗", "multiply": "正片叠底", "color_burn": "颜色加深", "linear_burn": "线性加深", "lighten": "变亮", "screen": "滤色", "color_dodge": "颜色减淡", "linear_dodge": "线性减淡", "overlay": "叠加", "soft_light": "柔光", "hard_light": "强光", "vivid_light": "亮光", "linear_light": "线性光", "pin_light": "点光", "difference": "差值", "exclusion": "排除"}},
+      "image_2": {"name": "图像 2"}, "mask_2": {"name": "蒙版 2"}, "alpha_2": {"name": "不透明度 2"}, "mask_blur_2": {"name": "蒙版模糊 2"}, "mask_strength_2": {"name": "蒙版强度 2"}, "mode_2": {"name": "混合模式 2", "options": {"normal": "正常", "darken": "变暗", "multiply": "正片叠底", "color_burn": "颜色加深", "linear_burn": "线性加深", "lighten": "变亮", "screen": "滤色", "color_dodge": "颜色减淡", "linear_dodge": "线性减淡", "overlay": "叠加", "soft_light": "柔光", "hard_light": "强光", "vivid_light": "亮光", "linear_light": "线性光", "pin_light": "点光", "difference": "差值", "exclusion": "排除"}},
+      "image_3": {"name": "图像 3"}, "mask_3": {"name": "蒙版 3"}, "alpha_3": {"name": "不透明度 3"}, "mask_blur_3": {"name": "蒙版模糊 3"}, "mask_strength_3": {"name": "蒙版强度 3"}, "mode_3": {"name": "混合模式 3", "options": {"normal": "正常", "darken": "变暗", "multiply": "正片叠底", "color_burn": "颜色加深", "linear_burn": "线性加深", "lighten": "变亮", "screen": "滤色", "color_dodge": "颜色减淡", "linear_dodge": "线性减淡", "overlay": "叠加", "soft_light": "柔光", "hard_light": "强光", "vivid_light": "亮光", "linear_light": "线性光", "pin_light": "点光", "difference": "差值", "exclusion": "排除"}},
+      "image_4": {"name": "图像 4"}, "mask_4": {"name": "蒙版 4"}, "alpha_4": {"name": "不透明度 4"}, "mask_blur_4": {"name": "蒙版模糊 4"}, "mask_strength_4": {"name": "蒙版强度 4"}, "mode_4": {"name": "混合模式 4", "options": {"normal": "正常", "darken": "变暗", "multiply": "正片叠底", "color_burn": "颜色加深", "linear_burn": "线性加深", "lighten": "变亮", "screen": "滤色", "color_dodge": "颜色减淡", "linear_dodge": "线性减淡", "overlay": "叠加", "soft_light": "柔光", "hard_light": "强光", "vivid_light": "亮光", "linear_light": "线性光", "pin_light": "点光", "difference": "差值", "exclusion": "排除"}},
+      "image_5": {"name": "图像 5"}, "mask_5": {"name": "蒙版 5"}, "alpha_5": {"name": "不透明度 5"}, "mask_blur_5": {"name": "蒙版模糊 5"}, "mask_strength_5": {"name": "蒙版强度 5"}, "mode_5": {"name": "混合模式 5", "options": {"normal": "正常", "darken": "变暗", "multiply": "正片叠底", "color_burn": "颜色加深", "linear_burn": "线性加深", "lighten": "变亮", "screen": "滤色", "color_dodge": "颜色减淡", "linear_dodge": "线性减淡", "overlay": "叠加", "soft_light": "柔光", "hard_light": "强光", "vivid_light": "亮光", "linear_light": "线性光", "pin_light": "点光", "difference": "差值", "exclusion": "排除"}}
+    },
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Color": {
+    "display_name": "颜色调整",
+    "description": "调整图像的颜色和色调。",
+    "inputs": {
+      "image": {"name": "图像"}, "temperature": {"name": "色温"}, "hue": {"name": "色相"}, "brightness": {"name": "亮度"}, "contrast": {"name": "对比度"}, "saturation": {"name": "饱和度"}, "gamma": {"name": "伽马"}, "exposure_offset": {"name": "曝光偏移"}, "vignette": {"name": "暗角"}, "noise": {"name": "噪点"}, "sharpness": {"name": "锐度"}, "hdr": {"name": "HDR"}
+    },
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Curve": {
+    "display_name": "曲线",
+    "description": "调整全部通道以及 RGB 单独通道的色调曲线。",
+    "inputs": {
+      "image": {"name": "图像"},
+      "all_x_point_1": {"name": "全部通道 X 点 1"}, "all_y_point_1": {"name": "全部通道 Y 点 1"}, "all_x_point_2": {"name": "全部通道 X 点 2"}, "all_y_point_2": {"name": "全部通道 Y 点 2"}, "all_x_point_3": {"name": "全部通道 X 点 3"}, "all_y_point_3": {"name": "全部通道 Y 点 3"},
+      "r_x_point_1": {"name": "红色 X 点 1"}, "r_y_point_1": {"name": "红色 Y 点 1"}, "r_x_point_2": {"name": "红色 X 点 2"}, "r_y_point_2": {"name": "红色 Y 点 2"}, "r_x_point_3": {"name": "红色 X 点 3"}, "r_y_point_3": {"name": "红色 Y 点 3"},
+      "g_x_point_1": {"name": "绿色 X 点 1"}, "g_y_point_1": {"name": "绿色 Y 点 1"}, "g_x_point_2": {"name": "绿色 X 点 2"}, "g_y_point_2": {"name": "绿色 Y 点 2"}, "g_x_point_3": {"name": "绿色 X 点 3"}, "g_y_point_3": {"name": "绿色 Y 点 3"},
+      "b_x_point_1": {"name": "蓝色 X 点 1"}, "b_y_point_1": {"name": "蓝色 Y 点 1"}, "b_x_point_2": {"name": "蓝色 X 点 2"}, "b_y_point_2": {"name": "蓝色 Y 点 2"}, "b_x_point_3": {"name": "蓝色 X 点 3"}, "b_y_point_3": {"name": "蓝色 Y 点 3"}
+    },
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Blur": {
+    "display_name": "模糊",
+    "inputs": {"image": {"name": "图像"}, "blur": {"name": "模糊程度"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Sketch": {
+    "display_name": "素描",
+    "inputs": {"image": {"name": "图像"}, "kernel_size": {"name": "核大小"}, "sigma": {"name": "Sigma"}, "k_sigma": {"name": "K Sigma"}, "epsilon": {"name": "Epsilon"}, "phi": {"name": "Phi"}, "gamma": {"name": "Gamma"}, "color_mode": {"name": "颜色模式", "options": {"gray": "灰度", "rgb": "RGB"}}, "scale": {"name": "缩放"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "PixelOE": {
+    "display_name": "像素化与轮廓扩展",
+    "inputs": {"pixel_size": {"name": "像素大小"}, "thickness": {"name": "厚度"}, "img": {"name": "图像"}, "mode": {"name": "像素化模式", "options": {"contrast": "对比度", "k_centroid": "K 质心", "lanczos": "Lanczos", "nearest": "最近邻", "bilinear": "双线性"}}, "color_quant": {"name": "颜色量化"}, "no_post_upscale": {"name": "禁用后置放大"}, "num_colors": {"name": "颜色数量"}, "quant_mode": {"name": "量化模式", "options": {"kmeans": "K-Means", "weighted-kmeans": "加权 K-Means", "repeat-kmeans": "重复 K-Means"}}, "dither_mode": {"name": "抖动模式", "options": {"ordered": "有序", "error_diffusion": "误差扩散", "none": "无"}}, "device": {"name": "设备", "options": {"default": "默认", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
+    "outputs": {"0": {"name": "像素图像"}, "1": {"name": "轮廓图像"}, "2": {"name": "轮廓权重"}}
+  },
+  "Pixelize": {
+    "display_name": "像素化",
+    "inputs": {"image": {"name": "图像"}, "colors": {"name": "颜色数"}, "dot_size": {"name": "点大小"}, "outline": {"name": "轮廓"}, "smooth": {"name": "平滑"}, "mode": {"name": "模式", "options": {"kmeans": "K-Means", "dithering": "抖动", "kmeans with dithering": "K-Means 加抖动"}}, "precise": {"name": "精度"}, "resize": {"name": "调整大小"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Glow": {
+    "display_name": "发光",
+    "inputs": {"image": {"name": "图像"}, "glow_mode": {"name": "发光模式", "options": {"BS": "滤色", "BMBL": "正片叠底与变亮"}}, "blur": {"name": "模糊"}, "strength": {"name": "强度"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Flip": {
+    "display_name": "翻转",
+    "inputs": {"image": {"name": "图像"}, "axis": {"name": "轴", "options": {"horizontal": "水平", "vertical": "垂直"}}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "Chromatic": {
+    "display_name": "色差",
+    "inputs": {"image": {"name": "图像"}, "strength": {"name": "强度"}, "blur": {"name": "模糊"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "LenDistortion": {
+    "display_name": "镜头畸变",
+    "inputs": {"image": {"name": "图像"}, "lens_distortion_k1": {"name": "畸变 K1"}, "lens_distortion_k2": {"name": "畸变 K2"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "TiltShift": {
+    "display_name": "移轴",
+    "inputs": {"image": {"name": "图像"}, "tilt_shift_focus_ratio": {"name": "焦点比例"}, "tilt_shift_dof": {"name": "景深"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "InOutPaint": {
+    "display_name": "内外扩图",
+    "inputs": {"image": {"name": "图像"}, "width": {"name": "宽度"}, "height": {"name": "高度"}, "align_top": {"name": "顶部对齐"}, "align_left": {"name": "左侧对齐"}, "align_bottom": {"name": "底部对齐"}, "align_right": {"name": "右侧对齐"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "CustomExif": {
+    "display_name": "自定义 EXIF",
+    "inputs": {"image": {"name": "图像"}, "custom_exif": {"name": "自定义 EXIF"}},
+    "outputs": {"0": {"name": "图像"}}
+  },
+  "SaveImageWithCustomExif": {
+    "display_name": "保存带自定义 EXIF 的图像",
+    "description": "将图像保存到 ComfyUI 输出目录。",
+    "inputs": {"images": {"name": "图像"}, "filename_prefix": {"name": "文件名前缀"}},
+    "outputs": {}
+  },
+  "OutlineExpansion": {
+    "display_name": "轮廓扩展",
+    "inputs": {"img": {"name": "图像"}, "pixel_size": {"name": "像素大小"}, "thickness": {"name": "厚度"}, "device": {"name": "设备", "options": {"default": "默认", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
+    "outputs": {"0": {"name": "轮廓图像"}, "1": {"name": "轮廓权重"}}
+  },
+  "PreResize": {
+    "display_name": "预调整大小",
+    "inputs": {"img": {"name": "图像"}, "target_pixels": {"name": "目标像素数"}, "pixel_size": {"name": "像素大小"}, "device": {"name": "设备", "options": {"default": "默认", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
+    "outputs": {"0": {"name": "图像"}}
+  }
+}

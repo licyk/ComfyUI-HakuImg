@@ -1,0 +1,107 @@
+{
+  "BlendImage": {
+    "display_name": "Blend Image",
+    "description": "Blend up to five images with masks, opacity, blur, strength, and blend modes.",
+    "inputs": {
+      "images_count": {"name": "Image Count"},
+      "bg_color": {"name": "Background Color"},
+      "image_1": {"name": "Image 1"}, "mask_1": {"name": "Mask 1"}, "alpha_1": {"name": "Opacity 1"}, "mask_blur_1": {"name": "Mask Blur 1"}, "mask_strength_1": {"name": "Mask Strength 1"}, "mode_1": {"name": "Blend Mode 1", "options": {"normal": "Normal", "darken": "Darken", "multiply": "Multiply", "color_burn": "Color Burn", "linear_burn": "Linear Burn", "lighten": "Lighten", "screen": "Screen", "color_dodge": "Color Dodge", "linear_dodge": "Linear Dodge", "overlay": "Overlay", "soft_light": "Soft Light", "hard_light": "Hard Light", "vivid_light": "Vivid Light", "linear_light": "Linear Light", "pin_light": "Pin Light", "difference": "Difference", "exclusion": "Exclusion"}},
+      "image_2": {"name": "Image 2"}, "mask_2": {"name": "Mask 2"}, "alpha_2": {"name": "Opacity 2"}, "mask_blur_2": {"name": "Mask Blur 2"}, "mask_strength_2": {"name": "Mask Strength 2"}, "mode_2": {"name": "Blend Mode 2", "options": {"normal": "Normal", "darken": "Darken", "multiply": "Multiply", "color_burn": "Color Burn", "linear_burn": "Linear Burn", "lighten": "Lighten", "screen": "Screen", "color_dodge": "Color Dodge", "linear_dodge": "Linear Dodge", "overlay": "Overlay", "soft_light": "Soft Light", "hard_light": "Hard Light", "vivid_light": "Vivid Light", "linear_light": "Linear Light", "pin_light": "Pin Light", "difference": "Difference", "exclusion": "Exclusion"}},
+      "image_3": {"name": "Image 3"}, "mask_3": {"name": "Mask 3"}, "alpha_3": {"name": "Opacity 3"}, "mask_blur_3": {"name": "Mask Blur 3"}, "mask_strength_3": {"name": "Mask Strength 3"}, "mode_3": {"name": "Blend Mode 3", "options": {"normal": "Normal", "darken": "Darken", "multiply": "Multiply", "color_burn": "Color Burn", "linear_burn": "Linear Burn", "lighten": "Lighten", "screen": "Screen", "color_dodge": "Color Dodge", "linear_dodge": "Linear Dodge", "overlay": "Overlay", "soft_light": "Soft Light", "hard_light": "Hard Light", "vivid_light": "Vivid Light", "linear_light": "Linear Light", "pin_light": "Pin Light", "difference": "Difference", "exclusion": "Exclusion"}},
+      "image_4": {"name": "Image 4"}, "mask_4": {"name": "Mask 4"}, "alpha_4": {"name": "Opacity 4"}, "mask_blur_4": {"name": "Mask Blur 4"}, "mask_strength_4": {"name": "Mask Strength 4"}, "mode_4": {"name": "Blend Mode 4", "options": {"normal": "Normal", "darken": "Darken", "multiply": "Multiply", "color_burn": "Color Burn", "linear_burn": "Linear Burn", "lighten": "Lighten", "screen": "Screen", "color_dodge": "Color Dodge", "linear_dodge": "Linear Dodge", "overlay": "Overlay", "soft_light": "Soft Light", "hard_light": "Hard Light", "vivid_light": "Vivid Light", "linear_light": "Linear Light", "pin_light": "Pin Light", "difference": "Difference", "exclusion": "Exclusion"}},
+      "image_5": {"name": "Image 5"}, "mask_5": {"name": "Mask 5"}, "alpha_5": {"name": "Opacity 5"}, "mask_blur_5": {"name": "Mask Blur 5"}, "mask_strength_5": {"name": "Mask Strength 5"}, "mode_5": {"name": "Blend Mode 5", "options": {"normal": "Normal", "darken": "Darken", "multiply": "Multiply", "color_burn": "Color Burn", "linear_burn": "Linear Burn", "lighten": "Lighten", "screen": "Screen", "color_dodge": "Color Dodge", "linear_dodge": "Linear Dodge", "overlay": "Overlay", "soft_light": "Soft Light", "hard_light": "Hard Light", "vivid_light": "Vivid Light", "linear_light": "Linear Light", "pin_light": "Pin Light", "difference": "Difference", "exclusion": "Exclusion"}}
+    },
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Color": {
+    "display_name": "Color",
+    "description": "Adjust image color and tone.",
+    "inputs": {
+      "image": {"name": "Image"}, "temperature": {"name": "Temperature"}, "hue": {"name": "Hue"}, "brightness": {"name": "Brightness"}, "contrast": {"name": "Contrast"}, "saturation": {"name": "Saturation"}, "gamma": {"name": "Gamma"}, "exposure_offset": {"name": "Exposure Offset"}, "vignette": {"name": "Vignette"}, "noise": {"name": "Noise"}, "sharpness": {"name": "Sharpness"}, "hdr": {"name": "HDR"}
+    },
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Curve": {
+    "display_name": "Curves",
+    "description": "Adjust the tone curve for all channels and individual RGB channels.",
+    "inputs": {
+      "image": {"name": "Image"},
+      "all_x_point_1": {"name": "All Channels X Point 1"}, "all_y_point_1": {"name": "All Channels Y Point 1"}, "all_x_point_2": {"name": "All Channels X Point 2"}, "all_y_point_2": {"name": "All Channels Y Point 2"}, "all_x_point_3": {"name": "All Channels X Point 3"}, "all_y_point_3": {"name": "All Channels Y Point 3"},
+      "r_x_point_1": {"name": "Red X Point 1"}, "r_y_point_1": {"name": "Red Y Point 1"}, "r_x_point_2": {"name": "Red X Point 2"}, "r_y_point_2": {"name": "Red Y Point 2"}, "r_x_point_3": {"name": "Red X Point 3"}, "r_y_point_3": {"name": "Red Y Point 3"},
+      "g_x_point_1": {"name": "Green X Point 1"}, "g_y_point_1": {"name": "Green Y Point 1"}, "g_x_point_2": {"name": "Green X Point 2"}, "g_y_point_2": {"name": "Green Y Point 2"}, "g_x_point_3": {"name": "Green X Point 3"}, "g_y_point_3": {"name": "Green Y Point 3"},
+      "b_x_point_1": {"name": "Blue X Point 1"}, "b_y_point_1": {"name": "Blue Y Point 1"}, "b_x_point_2": {"name": "Blue X Point 2"}, "b_y_point_2": {"name": "Blue Y Point 2"}, "b_x_point_3": {"name": "Blue X Point 3"}, "b_y_point_3": {"name": "Blue Y Point 3"}
+    },
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Blur": {
+    "display_name": "Blur",
+    "inputs": {"image": {"name": "Image"}, "blur": {"name": "Blur Amount"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Sketch": {
+    "display_name": "Sketch",
+    "inputs": {"image": {"name": "Image"}, "kernel_size": {"name": "Kernel Size"}, "sigma": {"name": "Sigma"}, "k_sigma": {"name": "K Sigma"}, "epsilon": {"name": "Epsilon"}, "phi": {"name": "Phi"}, "gamma": {"name": "Gamma"}, "color_mode": {"name": "Color Mode", "options": {"gray": "Grayscale", "rgb": "RGB"}}, "scale": {"name": "Scale"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "PixelOE": {
+    "display_name": "PixelOE",
+    "inputs": {"pixel_size": {"name": "Pixel Size"}, "thickness": {"name": "Thickness"}, "img": {"name": "Image"}, "mode": {"name": "Pixelization Mode", "options": {"contrast": "Contrast", "k_centroid": "K Centroid", "lanczos": "Lanczos", "nearest": "Nearest", "bilinear": "Bilinear"}}, "color_quant": {"name": "Color Quantization"}, "no_post_upscale": {"name": "Disable Post Upscale"}, "num_colors": {"name": "Number of Colors"}, "quant_mode": {"name": "Quantization Mode", "options": {"kmeans": "K-Means", "weighted-kmeans": "Weighted K-Means", "repeat-kmeans": "Repeat K-Means"}}, "dither_mode": {"name": "Dither Mode", "options": {"ordered": "Ordered", "error_diffusion": "Error Diffusion", "none": "None"}}, "device": {"name": "Device", "options": {"default": "Default", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
+    "outputs": {"0": {"name": "Pixel Image"}, "1": {"name": "Outline Image"}, "2": {"name": "Outline Weight"}}
+  },
+  "Pixelize": {
+    "display_name": "Pixelize",
+    "inputs": {"image": {"name": "Image"}, "colors": {"name": "Colors"}, "dot_size": {"name": "Dot Size"}, "outline": {"name": "Outline"}, "smooth": {"name": "Smooth"}, "mode": {"name": "Mode", "options": {"kmeans": "K-Means", "dithering": "Dithering", "kmeans with dithering": "K-Means with Dithering"}}, "precise": {"name": "Precision"}, "resize": {"name": "Resize"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Glow": {
+    "display_name": "Glow",
+    "inputs": {"image": {"name": "Image"}, "glow_mode": {"name": "Glow Mode", "options": {"BS": "Screen", "BMBL": "Multiply and Lighten"}}, "blur": {"name": "Blur"}, "strength": {"name": "Strength"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Flip": {
+    "display_name": "Flip",
+    "inputs": {"image": {"name": "Image"}, "axis": {"name": "Axis", "options": {"horizontal": "Horizontal", "vertical": "Vertical"}}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "Chromatic": {
+    "display_name": "Chromatic Aberration",
+    "inputs": {"image": {"name": "Image"}, "strength": {"name": "Strength"}, "blur": {"name": "Blur"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "LenDistortion": {
+    "display_name": "Lens Distortion",
+    "inputs": {"image": {"name": "Image"}, "lens_distortion_k1": {"name": "Distortion K1"}, "lens_distortion_k2": {"name": "Distortion K2"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "TiltShift": {
+    "display_name": "Tilt Shift",
+    "inputs": {"image": {"name": "Image"}, "tilt_shift_focus_ratio": {"name": "Focus Ratio"}, "tilt_shift_dof": {"name": "Depth of Field"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "InOutPaint": {
+    "display_name": "In/Out Paint",
+    "inputs": {"image": {"name": "Image"}, "width": {"name": "Width"}, "height": {"name": "Height"}, "align_top": {"name": "Align Top"}, "align_left": {"name": "Align Left"}, "align_bottom": {"name": "Align Bottom"}, "align_right": {"name": "Align Right"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "CustomExif": {
+    "display_name": "Custom EXIF",
+    "inputs": {"image": {"name": "Image"}, "custom_exif": {"name": "Custom EXIF"}},
+    "outputs": {"0": {"name": "Image"}}
+  },
+  "SaveImageWithCustomExif": {
+    "display_name": "Save Image with Custom EXIF",
+    "description": "Saves images to the ComfyUI output directory.",
+    "inputs": {"images": {"name": "Images"}, "filename_prefix": {"name": "Filename Prefix"}},
+    "outputs": {}
+  },
+  "OutlineExpansion": {
+    "display_name": "Outline Expansion",
+    "inputs": {"img": {"name": "Image"}, "pixel_size": {"name": "Pixel Size"}, "thickness": {"name": "Thickness"}, "device": {"name": "Device", "options": {"default": "Default", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
+    "outputs": {"0": {"name": "Outline Image"}, "1": {"name": "Outline Weight"}}
+  },
+  "PreResize": {
+    "display_name": "Pre Resize",
+    "inputs": {"img": {"name": "Image"}, "target_pixels": {"name": "Target Pixels"}, "pixel_size": {"name": "Pixel Size"}, "device": {"name": "Device", "options": {"default": "Default", "cpu": "CPU", "cuda": "CUDA", "mps": "MPS"}}},
+    "outputs": {"0": {"name": "Image"}}
+  }
+}
