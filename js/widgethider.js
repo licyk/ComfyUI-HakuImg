@@ -1,127 +1,124 @@
-// revise from https://github.com/jags111/efficiency-nodes-comfyui/blob/main/js/widgethider.js
 import { app } from "../../scripts/app.js";
 
-let origProps = {};
+const IMAGE_COUNT_MIN = 1;
+const IMAGE_COUNT_MAX = 5;
+const IMAGE_WIDGET_NAMES = [
+  "image",
+  "mask",
+  "alpha",
+  "mask_blur",
+  "mask_strength",
+  "mode",
+];
 
-const findWidgetByName = (node, name) => {
-  return node.widgets ? node.widgets.find((w) => w.name === name) : null;
-};
+const handledNodes = new WeakSet();
 
-const doesInputWithNameExist = (node, name) => {
-  return false;
-};
+const findWidgetByName = (node, name) =>
+  node.widgets?.find((widget) => widget.name === name);
 
-const HIDDEN_TAG = "tschide";
+const getNodeType = (node) =>
+  node?.constructor?.comfyClass ?? node?.comfyClass ?? node?.type;
 
-function toggleWidget(node, widget, show = false, suffix = "") {
-  if (!widget || doesInputWithNameExist(node, widget.name)) return;
+/**
+ * ComfyUI uses widget.hidden for LiteGraph layout and rendering visibility.
+ * The same property is also consumed by the Node 2.0 renderer.
+ */
+function setWidgetHidden(widget, hidden) {
+  if (!widget) return false;
 
-  if (!origProps[widget.name]) {
-    origProps[widget.name] = {
-      origType: widget.type,
-      origComputeSize: widget.computeSize,
-    };
-  }
-
-  widget.type = show ? origProps[widget.name].origType : HIDDEN_TAG + suffix;
-  widget.computeSize = show
-    ? origProps[widget.name].origComputeSize
-    : () => [0, -4];
-  widget.linkedWidgets?.forEach((w) =>
-    toggleWidget(node, w, ":" + widget.name, show)
-  );
-
-  const newHeight = node.computeSize()[1];
-
-  node.setSize([node.size[0], newHeight]);
+  const changed = widget.hidden !== hidden;
+  widget.hidden = hidden;
+  return changed;
 }
 
-function handleVisibility(node, countValue, node_type) {
-  const baseNamesMap = {
-    image: ["image", "mask", "alpha", "mask_blur", "mask_strength", "mode"],
-  };
+function updateNodeLayout(node) {
+  if (
+    typeof node.computeSize !== "function" ||
+    typeof node.setSize !== "function"
+  ) {
+    return;
+  }
 
-  const baseNames = baseNamesMap[node_type];
+  const newSize = node.computeSize();
+  if (!newSize || !node.size) return;
 
-  for (let i = 1; i <= 50; i++) {
-    const nameWidget = findWidgetByName(node, `${baseNames[0]}_${i}`);
-    const firstWidget = findWidgetByName(node, `${baseNames[1]}_${i}`);
-    const secondWidget = findWidgetByName(node, `${baseNames[2]}_${i}`);
-    const thirdWidget = findWidgetByName(node, `${baseNames[3]}_${i}`);
-    const fourthWidget = findWidgetByName(node, `${baseNames[4]}_${i}`);
-    const fifthWidget = findWidgetByName(node, `${baseNames[5]}_${i}`);
+  node.setSize([node.size[0], newSize[1]]);
+  app.canvas?.setDirty?.(true, true);
+}
 
-    if (i <= countValue) {
-      toggleWidget(node, nameWidget, true);
-      toggleWidget(node, firstWidget, true);
-      toggleWidget(node, secondWidget, true);
-      toggleWidget(node, thirdWidget, true);
-      toggleWidget(node, fourthWidget, true);
-      toggleWidget(node, fifthWidget, true);
-    } else {
-      toggleWidget(node, nameWidget, false);
-      toggleWidget(node, firstWidget, false);
-      toggleWidget(node, secondWidget, false);
-      toggleWidget(node, thirdWidget, false);
-      toggleWidget(node, fourthWidget, false);
-      toggleWidget(node, fifthWidget, false);
+function getImageCount(value) {
+  const count = Number(value);
+  if (!Number.isFinite(count)) return IMAGE_COUNT_MIN;
+
+  return Math.max(
+    IMAGE_COUNT_MIN,
+    Math.min(IMAGE_COUNT_MAX, Math.floor(count)),
+  );
+}
+
+function updateImageWidgetsVisibility(node, value) {
+  const imageCount = getImageCount(value);
+  let changed = false;
+
+  for (let index = 1; index <= IMAGE_COUNT_MAX; index += 1) {
+    const hidden = index > imageCount;
+
+    for (const baseName of IMAGE_WIDGET_NAMES) {
+      changed =
+        setWidgetHidden(
+          findWidgetByName(node, `${baseName}_${index}`),
+          hidden,
+        ) || changed;
     }
   }
+
+  if (changed) updateNodeLayout(node);
 }
 
-const nodeWidgetHandlers = {
-  BlendImage: {
-    images_count: handleimage,
-  },
-};
+function attachWidgetCallback(widget, onChange) {
+  const originalCallback = widget.callback;
 
-function widgetLogic(node, widget) {
-  const handler = nodeWidgetHandlers[node.comfyClass]?.[widget.name];
-
-  if (handler) {
-    handler(node, widget);
-  }
-}
-
-function handleimage(node, widget) {
-  handleVisibility(node, widget.value, "image");
+  widget.callback = function (...args) {
+    let result;
+    try {
+      result = originalCallback?.apply(this, args);
+    } finally {
+      onChange(args[0] ?? widget.value);
+    }
+    return result;
+  };
 }
 
 app.registerExtension({
   name: "hakuimg.blend.widgethider",
   nodeCreated(node) {
-    for (const w of node.widgets || []) {
-      let widgetValue = w.value;
-      let originalDescriptor = Object.getOwnPropertyDescriptor(w, "value");
-      if (!originalDescriptor) {
-        originalDescriptor = Object.getOwnPropertyDescriptor(
-          w.constructor.prototype,
-          "value"
-        );
-      }
-      widgetLogic(node, w);
-      Object.defineProperty(w, "value", {
-        get() {
-          let valueToReturn =
-            originalDescriptor && originalDescriptor.get
-              ? originalDescriptor.get.call(w)
-              : widgetValue;
+    if (getNodeType(node) !== "BlendImage") return;
 
-          return valueToReturn;
-        },
-        set(newVal) {
-          if (originalDescriptor && originalDescriptor.set) {
-            originalDescriptor.set.call(w, newVal);
-          } else {
-            widgetValue = newVal;
-          }
-          widgetLogic(node, w);
-        },
-      });
-    }
-    setTimeout(() => {
-      initialized = true;
-    }, 500);
-    // alert("hakuimg test");
-  },
+    const countWidget = findWidgetByName(node, "images_count");
+    if (!countWidget || handledNodes.has(node)) return;
+
+    handledNodes.add(node);
+
+    const syncVisibility = (value = countWidget.value) => {
+      updateImageWidgetsVisibility(node, value);
+    };
+
+    attachWidgetCallback(countWidget, syncVisibility);
+
+    const originalOnWidgetChanged = node.onWidgetChanged;
+    node.onWidgetChanged = function (name, value, ...args) {
+      const result = originalOnWidgetChanged?.call(this, name, value, ...args);
+      if (name === "images_count") syncVisibility(value);
+      return result;
+    };
+
+    const originalOnAfterGraphConfigured = node.onAfterGraphConfigured;
+    node.onAfterGraphConfigured = function (...args) {
+      const result = originalOnAfterGraphConfigured?.apply(this, args);
+      syncVisibility();
+      return result;
+    };
+
+    syncVisibility();
+  }
 });
