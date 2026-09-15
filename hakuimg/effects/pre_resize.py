@@ -1,8 +1,7 @@
-from typing import Any
-
 import torch
 from torchvision.transforms.functional import to_pil_image
 from pixeloe.torch.utils import pre_resize
+
 from .image_preprocess import image_preprocess
 
 

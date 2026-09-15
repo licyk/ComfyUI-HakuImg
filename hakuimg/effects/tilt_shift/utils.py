@@ -1,5 +1,3 @@
-from typing import Any
-
 """
 Original: https://github.com/andrewdcampbell/tilt-shift/
 """

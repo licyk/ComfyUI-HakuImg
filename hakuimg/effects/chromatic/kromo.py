@@ -1,5 +1,3 @@
-from typing import Any
-
 """Kromo V0.3
 === Author ===
 Yoonsik Park
@@ -9,12 +7,12 @@ Use the command line interface to add chromatic abberation and
 lens blur to your images, or import some of the functions below.
 """
 
-from PIL import Image
-import numpy as np
 import math
 import time
-from typing import List
 import os
+
+from PIL import Image
+import numpy as np
 
 
 def cartesian_to_polar(data: np.ndarray) -> np.ndarray:
@@ -168,7 +166,7 @@ def polar_to_cartesian(data: np.ndarray, width: int, height: int) -> np.ndarray:
     return ret
 
 
-def get_gauss(n: int) -> List[float]:
+def get_gauss(n: int) -> list[float]:
     """Return the Gaussian 1D kernel for a diameter of <n>
     Referenced from: https://stackoverflow.com/questions/11209115/
     """

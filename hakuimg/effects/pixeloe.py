@@ -1,6 +1,5 @@
-from typing import Any
-
 import torch
+
 from pixeloe.torch.pixelize import pixelize
 from .image_preprocess import image_preprocess
 

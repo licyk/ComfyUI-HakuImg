@@ -1,10 +1,7 @@
 from __future__ import annotations
-from typing import Any, Callable
-
-
+from typing import Callable
 from itertools import product
 
-from PIL import Image
 import numpy as np
 
 

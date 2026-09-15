@@ -1,5 +1,3 @@
-from typing import Any
-
 from PIL import ImageDraw, Image, ImageFilter
 
 

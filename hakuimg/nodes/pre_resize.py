@@ -1,5 +1,3 @@
-from typing import Any
-
 import torch
 from ..effects.pre_resize import run
 

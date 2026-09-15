@@ -1,5 +1,3 @@
-from typing import Any
-
 import enum
 
 import numpy as np

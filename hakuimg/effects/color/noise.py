@@ -1,7 +1,5 @@
-from typing import Any
-
-from PIL import ImageChops, Image
 import numpy as np
+from PIL import ImageChops, Image
 
 
 def get_noise(img: Image.Image, value: float) -> Image.Image:

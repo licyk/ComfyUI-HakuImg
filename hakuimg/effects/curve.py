@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import Any, Callable, cast
 
-import cv2
 from PIL import Image
 import numpy as np
 from scipy import interpolate

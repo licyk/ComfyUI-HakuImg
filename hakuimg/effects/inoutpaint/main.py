@@ -1,9 +1,5 @@
 from __future__ import annotations
-from typing import Any
 
-
-import numpy as np
-import cv2
 from PIL import Image
 
 from .utils import resize_with_mask

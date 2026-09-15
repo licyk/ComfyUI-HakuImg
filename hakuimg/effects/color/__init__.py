@@ -1,5 +1,3 @@
-from typing import Any
-
 from PIL import Image, ImageEnhance
 import cv2
 import numpy as np

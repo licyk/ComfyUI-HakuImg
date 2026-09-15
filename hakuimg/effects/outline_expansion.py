@@ -1,6 +1,5 @@
-from typing import Any
-
 import torch
+
 from .image_preprocess import image_preprocess
 from pixeloe.torch.outline import outline_expansion
 

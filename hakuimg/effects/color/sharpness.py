@@ -1,6 +1,4 @@
-from typing import Any
-
-from PIL import ImageEnhance
+from PIL import ImageEnhance, Image
 
 
 def get_sharpness(img: Image.Image, value: float) -> Image.Image:

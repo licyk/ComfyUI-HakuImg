@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from typing import Any, Tuple, List, Union
+from typing import Any
 from numpy.typing import NDArray
 
 import cv2
-from PIL import Image
 import numpy as np
 import scipy as sp
+from PIL import Image
 
 # from hakuimg.dither import dithering
 from .dither import dithering

@@ -2,7 +2,6 @@ from typing import Any, Callable
 
 from PIL import Image, ImageFilter, ImageColor
 import numpy as np
-import cv2
 
 
 def basic(target: np.ndarray, blend: np.ndarray, opacity: float) -> np.ndarray:
@@ -118,7 +117,7 @@ class Blend:
         return 0.5 - 2 * (target - 0.5) * (blend - 0.5)
 
 
-blend_methods = [i for i in Blend.__dict__.keys() if i[0] != "_" and i != "method"]
+blend_methods = [i for i in Blend.__dict__ if i[0] != "_" and i != "method"]
 
 
 def run(layers: int) -> Callable[..., Image.Image]:
