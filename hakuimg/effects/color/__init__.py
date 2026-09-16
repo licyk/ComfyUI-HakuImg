@@ -57,7 +57,6 @@ def run(
     res = np.clip(np.power(res, gamma), 0, 1)
 
     # saturation
-    print(res.shape)
     sat_real = 1 + sat
     hls_img = cv2.cvtColor(res, cv2.COLOR_RGB2HLS)
     hls_img[:, :, 2] = np.clip(sat_real * hls_img[:, :, 2], 0, 1)
@@ -65,7 +64,6 @@ def run(
 
     # hue
     hsv_img = cv2.cvtColor(res, cv2.COLOR_RGB2HSV)
-    print(np.max(hsv_img[:, :, 0]), np.max(hsv_img[:, :, 1]), np.max(hsv_img[:, :, 2]))
     hsv_img[:, :, 0] = (hsv_img[:, :, 0] + hue) % 360
 
     res = cv2.cvtColor(hsv_img, cv2.COLOR_HSV2RGB)

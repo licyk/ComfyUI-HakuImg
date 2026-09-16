@@ -4,7 +4,6 @@ from .config import (
     LOGGER_COLOR,
     LOGGER_NAME,
 )
-from .package_analyzer import validate_requirements
 
 
 logger = get_logger(

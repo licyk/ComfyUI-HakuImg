@@ -223,5 +223,5 @@ def read_packages_from_requirements_file(
         with open(file_path, "r", encoding="utf-8") as f:
             return f.readlines()
     except Exception as e:
-        logger.debug("打开 %s 时出现错误: %s\n请检查文件是否出现损坏", file_path, e)
+        logger.warning("打开 %s 时出现错误: %s\n请检查文件是否出现损坏", file_path, e)
         return []

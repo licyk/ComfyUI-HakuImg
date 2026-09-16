@@ -16,5 +16,5 @@ LOGGER_COLOR = os.getenv("HAKUIMG_LOGGER_COLOR") not in ["0", "False", "false", 
 ROOT_PATH = Path(__file__).parent.parent
 """SD WebUI All In One 根目录"""
 
-REQUIREMENTS_PATH = ROOT_PATH.parent.parent / "requirements.txt"
+REQUIREMENTS_PATH = ROOT_PATH.parent / "requirements.txt"
 """依赖文件路径"""
