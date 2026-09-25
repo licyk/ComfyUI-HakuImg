@@ -106,7 +106,7 @@
   },
   "LicykStyle": {
     "display_name": "Licyk Style",
-    "description": "Apply color-shifted noise and chromatic aberration to an image.",
+    "description": "Apply soft glow, color-shifted noise and chromatic aberration to an image.",
     "inputs": {
       "image": {"name": "Image"},
       "seed": {"name": "Seed"},
@@ -117,7 +117,15 @@
       "offset_percentage": {"name": "Noise Color Offset"},
       "opacity": {"name": "Noise Opacity"},
       "chromatic_strength": {"name": "Chromatic Strength"},
-      "chromatic_blur": {"name": "Chromatic Blur"}
+      "chromatic_blur": {"name": "Chromatic Blur"},
+      "glow_strength": {"name": "Glow Strength"},
+      "glow_threshold": {"name": "Glow Threshold"},
+      "glow_radius": {"name": "Glow Radius (%)"},
+      "glow_r": {"name": "Glow Color (R)"},
+      "glow_g": {"name": "Glow Color (G)"},
+      "glow_b": {"name": "Glow Color (B)"},
+      "glow_soft_focus": {"name": "Glow Soft Focus"},
+      "glow_edge_softness": {"name": "Glow Edge Softness"}
     },
     "outputs": {"0": {"name": "Image"}}
   }

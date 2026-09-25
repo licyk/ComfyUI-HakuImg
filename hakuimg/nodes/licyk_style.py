@@ -50,6 +50,14 @@ class LicykStyle(IO.ComfyNode):
                 IO.Int.Input("opacity", default=128, min=0, max=255, step=1),
                 IO.Float.Input("chromatic_strength", default=0.3, min=0, max=1, step=0.01),
                 IO.Boolean.Input("chromatic_blur", default=False),
+                IO.Float.Input("glow_strength", default=0, min=0, max=2, step=0.01),
+                IO.Float.Input("glow_threshold", default=0.6, min=0, max=1, step=0.01),
+                IO.Float.Input("glow_radius", default=3, min=0.5, max=10, step=0.1),
+                IO.Int.Input("glow_r", default=255, min=0, max=255, step=1),
+                IO.Int.Input("glow_g", default=240, min=0, max=255, step=1),
+                IO.Int.Input("glow_b", default=220, min=0, max=255, step=1),
+                IO.Float.Input("glow_soft_focus", default=0.3, min=0, max=1, step=0.01),
+                IO.Float.Input("glow_edge_softness", default=0.2, min=0, max=1, step=0.01),
             ],
             outputs=[IO.Image.Output(display_name="image")],
         )
@@ -70,6 +78,14 @@ class LicykStyle(IO.ComfyNode):
         opacity: int,
         chromatic_strength: float,
         chromatic_blur: bool,
+        glow_strength: float = 0,
+        glow_threshold: float = 0.6,
+        glow_radius: float = 3,
+        glow_r: int = 255,
+        glow_g: int = 240,
+        glow_b: int = 220,
+        glow_soft_focus: float = 0.3,
+        glow_edge_softness: float = 0.2,
     ) -> IO.NodeOutput:
         output_images: list[np.ndarray] = []
         for batch_index, pil_image in enumerate(_tensor_to_pil_images(image)):
@@ -84,6 +100,14 @@ class LicykStyle(IO.ComfyNode):
                 opacity=opacity,
                 chromatic_strength=chromatic_strength,
                 chromatic_blur=chromatic_blur,
+                glow_strength=glow_strength,
+                glow_threshold=glow_threshold,
+                glow_radius=glow_radius,
+                glow_r=glow_r,
+                glow_g=glow_g,
+                glow_b=glow_b,
+                glow_soft_focus=glow_soft_focus,
+                glow_edge_softness=glow_edge_softness,
             )
             output_images.append(np.asarray(processed.convert("RGB"), dtype=np.float32) / 255.0)
 

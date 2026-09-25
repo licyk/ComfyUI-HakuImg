@@ -135,6 +135,8 @@ This node is ported from [KohakuBlueleaf/a1111-sd-webui-haku-img](https://github
 
 ![LicykStyle](./assets/LicykStyle.jpg)
 
+The glow filter (ambient glow, soft focus and edge haze) is disabled when `glow_strength` is 0.
+
 </details>
 
 

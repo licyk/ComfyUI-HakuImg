@@ -135,6 +135,8 @@ _✨图片处理工具_
 
 ![LicykStyle](./assets/LicykStyle.jpg)
 
+柔光滤镜（环境光晕、柔焦和边缘柔化）在`glow_strength`为 0 时不启用。
+
 </details>
 
 

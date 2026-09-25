@@ -106,7 +106,7 @@
   },
   "LicykStyle": {
     "display_name": "Licyk 风格",
-    "description": "为图像添加带颜色偏移的噪声和色差效果。",
+    "description": "为图像添加柔光、带颜色偏移的噪声和色差效果。",
     "inputs": {
       "image": {"name": "图像"},
       "seed": {"name": "种子"},
@@ -117,7 +117,15 @@
       "offset_percentage": {"name": "噪声颜色偏移"},
       "opacity": {"name": "噪声不透明度"},
       "chromatic_strength": {"name": "色差强度"},
-      "chromatic_blur": {"name": "色差模糊"}
+      "chromatic_blur": {"name": "色差模糊"},
+      "glow_strength": {"name": "光晕强度"},
+      "glow_threshold": {"name": "光晕阈值"},
+      "glow_radius": {"name": "光晕半径（%）"},
+      "glow_r": {"name": "光晕颜色（R）"},
+      "glow_g": {"name": "光晕颜色（G）"},
+      "glow_b": {"name": "光晕颜色（B）"},
+      "glow_soft_focus": {"name": "柔焦"},
+      "glow_edge_softness": {"name": "边缘柔化"}
     },
     "outputs": {"0": {"name": "图像"}}
   }

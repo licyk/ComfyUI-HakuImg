@@ -47,7 +47,15 @@
         20,
         128,
         0.3,
-        false
+        false,
+        0,
+        0.6,
+        3,
+        255,
+        240,
+        220,
+        0.3,
+        0.2
       ],
       "widgets_values_named": {
         "seed": 389709898033691,
@@ -59,7 +67,15 @@
         "offset_percentage": 20,
         "opacity": 128,
         "chromatic_strength": 0.3,
-        "chromatic_blur": false
+        "chromatic_blur": false,
+        "glow_strength": 0,
+        "glow_threshold": 0.6,
+        "glow_radius": 3,
+        "glow_r": 255,
+        "glow_g": 240,
+        "glow_b": 220,
+        "glow_soft_focus": 0.3,
+        "glow_edge_softness": 0.2
       }
     },
     {
